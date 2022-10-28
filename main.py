@@ -19,8 +19,8 @@ class Board:
 
         bombs_planted = 0
         while bombs_planted < self.num_bombs:
-            row = random.randint(0, self.num_bombs-1)
-            column = random.randint(0, self.num_bombs-1)
+            row = random.randint(0, self.dim_size-1)
+            column = random.randint(0, self.dim_size-1)
 
             if board[row][column] == '*':
                 continue
@@ -74,8 +74,7 @@ class Board:
 
     def __str__(self):
 
-        row_proto = [None for _ in range(self.dim_size)]
-        visible_board = [row_proto for _ in range(self.dim_size)]
+        visible_board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size)]
 
         for row in range(self.dim_size):
             for column in range(self.dim_size):
@@ -101,7 +100,7 @@ class Board:
         for idx, column in enumerate(indices):
             format = '%-' + str(widths[idx]) + "s"
             cells.append(format % (column))
-        indices_row += '  '.join(cells)
+        indices_row += ' '.join(cells)
         indices_row += ' \n'
 
         for i in range(len(visible_board)):
